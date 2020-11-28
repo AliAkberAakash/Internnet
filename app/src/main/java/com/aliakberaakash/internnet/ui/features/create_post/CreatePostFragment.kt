@@ -1,4 +1,4 @@
-package com.aliakberaakash.internnet.ui.features.uploadImage
+package com.aliakberaakash.internnet.ui.features.create_post
 
 import android.app.Activity
 import android.content.Intent
@@ -20,14 +20,14 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
-import kotlinx.android.synthetic.main.uploadimage_layout.*
+import kotlinx.android.synthetic.main.create_post_layout.*
 import java.io.ByteArrayOutputStream
 import java.io.FileNotFoundException
 import java.io.IOException
 import java.sql.Timestamp
 
 
-class UploadImageFragment : Fragment() {
+class CreatePostFragment : Fragment() {
     companion object{
         const val GET_FROM_GALLERY = 3
     }
@@ -37,13 +37,13 @@ class UploadImageFragment : Fragment() {
     lateinit var storage: FirebaseStorage
     val db = Firebase.firestore
 
-    private lateinit var viewModel: UploadImageViewModel
+    private lateinit var viewModel: CreatePostViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view: View = inflater.inflate(R.layout.uploadimage_layout, container, false)
+    ): View {
+        val view: View = inflater.inflate(R.layout.create_post_layout, container, false)
         val uploadBtn: MaterialButton = view.findViewById(R.id.uploadBtn)
         img = view.findViewById(R.id.image_upload)
         return view
@@ -51,7 +51,7 @@ class UploadImageFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(UploadImageViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(CreatePostViewModel::class.java)
         storage = Firebase.storage
 
 

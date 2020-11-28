@@ -1,9 +1,9 @@
-package com.aliakberaakash.internnet.ui.features.uploadImage
+package com.aliakberaakash.internnet.ui.features.create_post
 
 import androidx.lifecycle.ViewModel
 import com.aliakberaakash.internnet.data.Repository
 
-class UploadImageViewModel : ViewModel() {
+class CreatePostViewModel : ViewModel() {
 
     private val repository = Repository()
 

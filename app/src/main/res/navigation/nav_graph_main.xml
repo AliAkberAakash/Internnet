@@ -25,7 +25,7 @@
         tools:layout="@layout/menu_fragment" />
     <fragment
         android:id="@+id/uploadImageFragment"
-        android:name="com.aliakberaakash.internnet.ui.features.uploadImage.UploadImageFragment"
+        android:name="com.aliakberaakash.internnet.ui.features.create_post.CreatePostFragment"
         android:label="Create Post" />
     <fragment
         android:id="@+id/postDetailsFragment"
