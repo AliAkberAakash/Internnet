@@ -24,10 +24,6 @@
         android:label="Menu"
         tools:layout="@layout/menu_fragment" />
     <fragment
-        android:id="@+id/uploadImageFragment"
-        android:name="com.aliakberaakash.internnet.ui.features.create_post.CreatePostFragment"
-        android:label="Create Post" />
-    <fragment
         android:id="@+id/postDetailsFragment"
         android:name="com.aliakberaakash.internnet.ui.features.post_details.PostDetailsFragment"
         android:label="Post Details"
@@ -54,4 +50,8 @@
             android:name="postId"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/createPostFragment"
+        android:name="com.aliakberaakash.internnet.ui.features.create_post.CreatePostFragment"
+        android:label="CreatePostFragment" />
 </navigation>
