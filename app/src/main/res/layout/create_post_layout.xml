@@ -1,97 +1,293 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ProgressBar
-        android:visibility="gone"
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-    <ImageView
-        android:scaleType="centerCrop"
-        android:id="@+id/choose_image"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="8dp"
-        android:src="@drawable/ic_outline_add_a_photo_24"
-        app:layout_constraintBottom_toBottomOf="@+id/uploadBtn"
-        app:layout_constraintEnd_toStartOf="@+id/uploadBtn"
-        app:layout_constraintTop_toTopOf="@+id/uploadBtn" />
+    </data>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/preview_container"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:clipChildren="true"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="0dp"
-        app:layout_constraintEnd_toStartOf="@+id/choose_image"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/image_upload"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:scaleType="centerCrop"
-            tools:src="@drawable/placeholder" />
-    </androidx.cardview.widget.CardView>
-
-    <Button
-        android:id="@+id/uploadBtn"
-        android:layout_width="140dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:backgroundTint="@color/upload"
-        android:text="@string/upload"
-        android:textAllCaps="false"
-        app:layout_constraintEnd_toEndOf="@+id/description"
-        app:layout_constraintTop_toBottomOf="@+id/description" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:id="@+id/description"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/description_field"
+        <TextView
+            style="@style/LabelStyle"
+            android:id="@+id/titleLabel"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="@string/write_a_description"
-            />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/internship_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-    </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/titleField"
+            style="@style/TextLayoutStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleLabel">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:background="@color/text_field_background"
+                android:inputType="text"
+                android:hint="@string/title_hint"
+                android:maxLines="1" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            style="@style/LabelStyle"
+            android:id="@+id/jobTypeLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/job_type"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/titleField"/>
+
+        <RadioGroup
+            android:id="@+id/jobTypeField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/jobTypeLabel">
+            <RadioButton
+                android:buttonTint="@color/secondary"
+                android:textColor="@color/username_text_color"
+                android:id="@+id/radio_pirates"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/full_time" />
+
+            <RadioButton
+                android:buttonTint="@color/secondary"
+                android:textColor="@color/username_text_color"
+                android:layout_marginStart="16dp"
+                android:id="@+id/radio_ninjas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/part_time" />
+        </RadioGroup>
 
 
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/main_group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:constraint_referenced_ids="choose_image,description,uploadBtn, preview_container"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/descriptionLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/description"
+            style="@style/LabelStyle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/jobTypeField" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/descriptionField"
+            style="@style/TextLayoutStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/descriptionLabel">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:paddingTop="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/text_field_background"
+                android:gravity="start"
+                android:hint="@string/description_hint"
+                android:lines="3"
+                android:scrollbars="vertical" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/requirementsLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/requirements_label"
+            style="@style/LabelStyle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/descriptionField" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/requirementsField"
+            style="@style/TextLayoutStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/requirementsLabel">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:paddingTop="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/text_field_background"
+                android:gravity="start"
+                android:hint="@string/requirements_hint"
+                android:lines="3"
+                android:scrollbars="vertical" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/benefitsLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/benefits_label"
+            style="@style/LabelStyle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/requirementsField" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/benefitsField"
+            style="@style/TextLayoutStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/benefitsLabel">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:paddingTop="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/text_field_background"
+                android:gravity="start"
+                android:hint="@string/benefits_hint"
+                android:lines="3"
+                android:scrollbars="vertical" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/salaryLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/salary"
+            style="@style/LabelStyle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/benefitsField" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/startingSalaryField"
+            style="@style/TextLayoutStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/toText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/salaryLabel">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/text_field_background"
+                android:hint="@string/starting_salary_hint"
+                android:inputType="number"
+                android:maxLines="1"
+                android:padding="16dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:padding="16dp"
+            android:id="@+id/toText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/to"
+            app:layout_constraintBottom_toBottomOf="@+id/startingSalaryField"
+            app:layout_constraintEnd_toEndOf="@+id/benefitsField"
+            app:layout_constraintStart_toStartOf="@+id/benefitsField"
+            app:layout_constraintTop_toTopOf="@+id/startingSalaryField" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/endSalaryField"
+            style="@style/TextLayoutStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/toText"
+            app:layout_constraintTop_toBottomOf="@+id/salaryLabel">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/text_field_background"
+                android:hint="@string/ending_salary_hint"
+                android:inputType="number"
+                android:maxLines="1"
+                android:padding="16dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/deadlineLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/deadline_label"
+            style="@style/LabelStyle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/startingSalaryField" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/deadlineField"
+            style="@style/TextLayoutStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/toText"
+            app:layout_constraintTop_toBottomOf="@+id/deadlineLabel">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:focusable="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/text_field_background"
+                android:hint="@string/deadline_hint"
+                android:inputType="number"
+                android:maxLines="1"
+                android:padding="16dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>
