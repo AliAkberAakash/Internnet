@@ -6,14 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.aliakberaakash.internnet.R
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
+import com.aliakberaakash.internnet.databinding.CreatePostLayoutBinding
 
 
 class CreatePostFragment : Fragment() {
-
-    val db = Firebase.firestore
 
     private lateinit var viewModel: CreatePostViewModel
 
@@ -21,13 +17,17 @@ class CreatePostFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view: View = inflater.inflate(R.layout.create_post_layout, container, false)
-        return view
+        viewModel = ViewModelProvider(this).get(CreatePostViewModel::class.java)
+        return CreatePostLayoutBinding.inflate(inflater, container, false)
+                .apply {
+                    lifecycleOwner = viewLifecycleOwner
+                    viewModel = this@CreatePostFragment.viewModel
+                }.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(CreatePostViewModel::class.java)
+
 
 
     }
