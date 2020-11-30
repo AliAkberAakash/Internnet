@@ -158,14 +158,23 @@
 
         <TextView
             android:id="@+id/benefitsLabel"
-            android:layout_width="match_parent"
+            style="@style/LabelStyle"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@string/benefits_label"
-            style="@style/LabelStyle"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/requirementsField" />
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/optional"
+            app:layout_constraintBottom_toBottomOf="@+id/benefitsLabel"
+            app:layout_constraintStart_toEndOf="@+id/benefitsLabel"
+            app:layout_constraintTop_toTopOf="@+id/benefitsLabel" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/benefitsField"
