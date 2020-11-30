@@ -48,4 +48,5 @@
     <string name="job_type">Job Type</string>
     <string name="part_time">Part time</string>
     <string name="full_time">Full time</string>
+    <string name="post">Post</string>
 </resources>
