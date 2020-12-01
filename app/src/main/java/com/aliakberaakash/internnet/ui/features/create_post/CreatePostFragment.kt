@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.aliakberaakash.internnet.databinding.CreatePostLayoutBinding
+import timber.log.Timber
+import java.util.*
 
 
 class CreatePostFragment : Fragment() {
@@ -18,18 +20,29 @@ class CreatePostFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         viewModel = ViewModelProvider(this).get(CreatePostViewModel::class.java)
-        return CreatePostLayoutBinding.inflate(inflater, container, false)
+
+        val binding = CreatePostLayoutBinding.inflate(inflater, container, false)
                 .apply {
                     lifecycleOwner = viewLifecycleOwner
                     viewModel = this@CreatePostFragment.viewModel
-                }.root
+                }
+
+        binding.deadlineField.setOnClickListener {
+            DatePickerFragment(::callback).show(childFragmentManager, "datePicker")
+        }
+
+        return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
 
+    }
 
+    private fun callback(date :String){
+        Timber.d(date)
+        viewModel.deadlineText.value=date
     }
 
 }

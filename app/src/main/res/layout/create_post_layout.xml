@@ -288,28 +288,20 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/startingSalaryField" />
 
-            <com.google.android.material.textfield.TextInputLayout
+            <TextView
                 android:id="@+id/deadlineField"
-                style="@style/TextLayoutStyle"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:padding="5dp"
+                android:text="@={viewModel.deadlineText}"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/toText"
-                app:layout_constraintTop_toBottomOf="@+id/deadlineLabel">
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/deadlineLabel" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/text_field_background"
-                    android:focusable="false"
-                    android:hint="@string/deadline_hint"
-                    android:inputType="number"
-                    android:maxLines="1"
-                    android:padding="16dp"
-                    android:text="@={viewModel.deadlineText}" />
-
-            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/postButton"

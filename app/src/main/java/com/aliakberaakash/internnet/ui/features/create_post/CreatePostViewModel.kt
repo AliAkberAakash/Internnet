@@ -20,7 +20,7 @@ class CreatePostViewModel : ViewModel() {
     val benefitsText = MutableLiveData<String>()
     val startingSalaryText = MutableLiveData<String>()
     val maximumSalaryText = MutableLiveData<String>()
-    val deadlineText = MutableLiveData<String>()
+    val deadlineText = MutableLiveData("dd/mm/yyyy")
 
     var jobType = FULL_TIME
 
@@ -63,7 +63,7 @@ class CreatePostViewModel : ViewModel() {
     fun onPostClicked(){
         Timber.d(titleText.value)
 
-        
+
     }
 
     fun onJobTypeClicked(item : String){
