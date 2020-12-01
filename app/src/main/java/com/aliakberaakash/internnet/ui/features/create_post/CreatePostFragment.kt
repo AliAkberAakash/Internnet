@@ -28,7 +28,7 @@ class CreatePostFragment : Fragment() {
                 }
 
         binding.deadlineField.setOnClickListener {
-            DatePickerFragment(::callback).show(childFragmentManager, "datePicker")
+            DatePickerFragment(::datePickerCallback).show(childFragmentManager, "datePicker")
         }
 
         return binding.root
@@ -40,7 +40,7 @@ class CreatePostFragment : Fragment() {
 
     }
 
-    private fun callback(date :String){
+    private fun datePickerCallback(date :String){
         Timber.d(date)
         viewModel.deadlineText.value=date
     }
