@@ -8,6 +8,12 @@ import timber.log.Timber
 
 class CreatePostViewModel : ViewModel() {
 
+    companion object{
+        const val FULL_TIME = "Full time"
+        const val PART_TIME = "Part time"
+    }
+
+
     val titleText = MutableLiveData<String>()
     val descriptionText = MutableLiveData<String>()
     val requirementsText = MutableLiveData<String>()
@@ -15,6 +21,8 @@ class CreatePostViewModel : ViewModel() {
     val startingSalaryText = MutableLiveData<String>()
     val maximumSalaryText = MutableLiveData<String>()
     val deadlineText = MutableLiveData<String>()
+
+    var jobType = FULL_TIME
 
     private val repository = Repository()
     fun getCurrentUser() = repository.getCurrentUser()
@@ -54,5 +62,11 @@ class CreatePostViewModel : ViewModel() {
 
     fun onPostClicked(){
         Timber.d(titleText.value)
+
+        
+    }
+
+    fun onJobTypeClicked(item : String){
+        jobType = item
     }
 }
