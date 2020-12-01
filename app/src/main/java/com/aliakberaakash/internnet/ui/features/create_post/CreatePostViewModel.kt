@@ -4,6 +4,7 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.aliakberaakash.internnet.data.Repository
+import com.aliakberaakash.internnet.data.model.JobPost
 import timber.log.Timber
 
 class CreatePostViewModel : ViewModel() {
@@ -11,6 +12,7 @@ class CreatePostViewModel : ViewModel() {
     companion object{
         const val FULL_TIME = "Full time"
         const val PART_TIME = "Part time"
+        const val DEADLINE_HINT = "dd/mm/yyyy"
     }
 
 
@@ -20,7 +22,7 @@ class CreatePostViewModel : ViewModel() {
     val benefitsText = MutableLiveData<String>()
     val startingSalaryText = MutableLiveData<String>()
     val maximumSalaryText = MutableLiveData<String>()
-    val deadlineText = MutableLiveData("dd/mm/yyyy")
+    val deadlineText = MutableLiveData(DEADLINE_HINT)
 
     var jobType = FULL_TIME
 
@@ -57,12 +59,23 @@ class CreatePostViewModel : ViewModel() {
                 || requirementsText.value.isNullOrEmpty()
                 || startingSalaryText.value.isNullOrEmpty()
                 || maximumSalaryText.value.isNullOrEmpty()
-                || deadlineText.value.isNullOrEmpty())
+                || deadlineText.value == DEADLINE_HINT)
     }
 
     fun onPostClicked(){
-        Timber.d(titleText.value)
 
+        val jobPost = JobPost(
+                jobTitle = titleText.value!!,
+                jobType = jobType,
+                jobDescription = descriptionText.value!!,
+                jobRequirements = requirementsText.value!!,
+                jobBenefits = benefitsText.value ?: "",
+                startingSalary = startingSalaryText.value!!,
+                endingSalary = maximumSalaryText.value!!,
+                deadline = deadlineText.value!!
+        )
+
+        Timber.d(jobPost.toString())
 
     }
 
