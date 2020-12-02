@@ -14,7 +14,7 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.feed_fragment.*
 import kotlinx.coroutines.runBlocking
 
-class FeedFragment : Fragment(), FeedFragmentCallback {
+class FeedFragment : Fragment() {
 
     companion object {
         const val TAG = "FeedFragment"
@@ -33,33 +33,7 @@ class FeedFragment : Fragment(), FeedFragmentCallback {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(FeedViewModel::class.java)
-        val user = Firebase.auth.currentUser
 
-        val postList:MutableList<Post> = mutableListOf()
-        val db = Firebase.firestore
-        db.collection("posts")
-            .get()
-            .addOnSuccessListener { result ->
-                for (document in result) {
-                    val post = document.toObject(Post::class.java)
-                    postList.add(post)
-                }
-                val adapter = PostAdapter(postList, this)
-                feed_recyclerview.adapter = adapter
-            }
-
-    }
-
-    override fun checkCurrentUser(email: String) = viewModel.checkCurrentUser(email)
-
-    override fun getCurrentUserEmail() = viewModel.getCurrentUser()?.email
-
-    override fun onIWantThisClicked(documentId : String) {
-        runBlocking{ viewModel.onIWantThisClicked(documentId) }
-    }
-
-    override fun onCancelClaimClicked(documentId: String) {
-        runBlocking{ viewModel.onCancelClaimClicked(documentId) }
     }
 
 }

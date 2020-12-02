@@ -53,5 +53,5 @@
     <fragment
         android:id="@+id/createPostFragment"
         android:name="com.aliakberaakash.internnet.ui.features.create_post.CreatePostFragment"
-        android:label="CreatePostFragment" />
+        android:label="Post a Job" />
 </navigation>
