@@ -2,6 +2,8 @@ package com.aliakberaakash.internnet.data
 
 import com.aliakberaakash.internnet.data.model.JobPost
 import com.aliakberaakash.internnet.data.model.User
+import com.aliakberaakash.internnet.data.network.NetworkSource
+import com.aliakberaakash.internnet.data.network.NetworkSourceFirebaseImplementation
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FieldValue
@@ -14,6 +16,7 @@ class RepositoryImpl : Repository{
 
     val user = Firebase.auth.currentUser
     private val db = Firebase.firestore
+    private val networkSource : NetworkSource = NetworkSourceFirebaseImplementation()
 
     fun checkCurrentUser(email : String) = email == user?.email
 
@@ -59,14 +62,6 @@ class RepositoryImpl : Repository{
     }
 
     override suspend fun postJob(jobPost: JobPost) : Boolean {
-        return try {
-            db.collection("posts")
-                .document(jobPost.id)
-                .set(jobPost).await()
-            true
-        }catch (e : Exception){
-            Timber.d(e.localizedMessage)
-            false
-        }
+        return networkSource.postJob(jobPost)
     }
 }
