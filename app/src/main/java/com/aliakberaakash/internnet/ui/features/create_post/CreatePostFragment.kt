@@ -10,6 +10,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.aliakberaakash.internnet.R
 import com.aliakberaakash.internnet.databinding.CreatePostLayoutBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -53,6 +55,9 @@ class CreatePostFragment : Fragment() {
         viewModel.isSuccess.observe(viewLifecycleOwner, {
             val message = if (it) "Successfully posted!" else "failed to post"
             Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+
+            // if the post was successful go back to homepage
+            if(it) findNavController().popBackStack()
         })
 
         viewModel.isLoading.observe(viewLifecycleOwner, {
