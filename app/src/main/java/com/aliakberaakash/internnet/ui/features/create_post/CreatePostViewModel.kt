@@ -3,8 +3,11 @@ package com.aliakberaakash.internnet.ui.features.create_post
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.aliakberaakash.internnet.data.Repository
+import androidx.lifecycle.viewModelScope
+import com.aliakberaakash.internnet.data.RepositoryImpl
 import com.aliakberaakash.internnet.data.model.JobPost
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import timber.log.Timber
 
 class CreatePostViewModel : ViewModel() {
@@ -23,11 +26,12 @@ class CreatePostViewModel : ViewModel() {
     val startingSalaryText = MutableLiveData<String>()
     val maximumSalaryText = MutableLiveData<String>()
     val deadlineText = MutableLiveData(DEADLINE_HINT)
+    val isLoading = MutableLiveData(false)
+    val isSuccess = MutableLiveData<Boolean>()
 
     var jobType = FULL_TIME
 
-    private val repository = Repository()
-    fun getCurrentUser() = repository.getCurrentUser()
+    private val repository = RepositoryImpl()
 
     val postButtonState = MediatorLiveData<Boolean>().apply {
         addSource(titleText) {
@@ -63,23 +67,32 @@ class CreatePostViewModel : ViewModel() {
     }
 
     fun onPostClicked(){
-
+        val tsLong = System.currentTimeMillis() / 1000
+        val ts = tsLong.toString()
         val jobPost = JobPost(
-                jobTitle = titleText.value!!,
-                jobType = jobType,
-                jobDescription = descriptionText.value!!,
-                jobRequirements = requirementsText.value!!,
-                jobBenefits = benefitsText.value ?: "",
-                startingSalary = startingSalaryText.value!!,
-                endingSalary = maximumSalaryText.value!!,
-                deadline = deadlineText.value!!
+            id = ts,
+            jobTitle = titleText.value!!,
+            jobType = jobType,
+            jobDescription = descriptionText.value!!,
+            jobRequirements = requirementsText.value!!,
+            jobBenefits = benefitsText.value ?: "",
+            startingSalary = startingSalaryText.value!!,
+            endingSalary = maximumSalaryText.value!!,
+            deadline = deadlineText.value!!
         )
 
         Timber.d(jobPost.toString())
 
+        viewModelScope.launch(Dispatchers.IO){
+            isLoading.postValue(true)
+            isSuccess.postValue(repository.postJob(jobPost))
+            isLoading.postValue(false)
+        }
+
+
     }
 
-    fun onJobTypeClicked(item : String){
+    fun onJobTypeClicked(item: String){
         jobType = item
     }
 }

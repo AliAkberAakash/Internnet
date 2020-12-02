@@ -1,11 +1,11 @@
 package com.aliakberaakash.internnet.ui.features.feed
 
 import androidx.lifecycle.ViewModel
-import com.aliakberaakash.internnet.data.Repository
+import com.aliakberaakash.internnet.data.RepositoryImpl
 
 class FeedViewModel : ViewModel() {
 
-    private val repository = Repository()
+    private val repository = RepositoryImpl()
 
     fun checkCurrentUser(email : String) = repository.checkCurrentUser(email)
 

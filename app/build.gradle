@@ -38,6 +38,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildscript {
+        ext.kotlin_version = '1.4.0'
+    }
 }
 
 dependencies {
@@ -90,5 +93,9 @@ dependencies {
 
     // timber logs
     implementation 'com.jakewharton.timber:timber:4.7.1'
+
+    /* coroutines support for firebase operations */
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.2'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.1.1'
 
 }

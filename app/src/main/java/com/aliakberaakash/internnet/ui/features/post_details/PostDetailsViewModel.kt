@@ -2,7 +2,7 @@ package com.aliakberaakash.internnet.ui.features.post_details
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.aliakberaakash.internnet.data.Repository
+import com.aliakberaakash.internnet.data.RepositoryImpl
 import com.aliakberaakash.internnet.data.model.Post
 import com.aliakberaakash.internnet.data.model.User
 import com.google.firebase.firestore.ktx.firestore
@@ -13,7 +13,7 @@ class PostDetailsViewModel : ViewModel() {
     val post : MutableLiveData<Post> = MutableLiveData()
     val users : MutableLiveData<List<User>> = MutableLiveData()
     val winner = MutableLiveData<Boolean>()
-    private val repository = Repository()
+    private val repository = RepositoryImpl()
 
     fun checkCurrentUser(email : String) = repository.checkCurrentUser(email)
 
