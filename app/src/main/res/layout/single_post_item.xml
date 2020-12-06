@@ -15,12 +15,13 @@
         android:layout_height="match_parent">
 
         <androidx.cardview.widget.CardView
+            android:layout_margin="16dp"
             android:id="@+id/cardView"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
             android:clipChildren="true"
-            android:elevation="0dp"
-            app:cardCornerRadius="4dp"
+            app:cardElevation="0dp"
+            app:cardCornerRadius="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -29,7 +30,6 @@
                 android:id="@+id/companyLogo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="17dp"
                 android:src="@drawable/ic_placeholder"
                 android:contentDescription="@string/company_logo" />
 
