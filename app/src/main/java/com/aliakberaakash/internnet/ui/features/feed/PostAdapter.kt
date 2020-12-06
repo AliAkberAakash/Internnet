@@ -11,7 +11,7 @@ import com.aliakberaakash.internnet.data.model.JobPost
 import com.bumptech.glide.Glide
 import timber.log.Timber
 
-class PostAdapter(var postList: List<JobPost>, val callback: FeedFragmentCallback) : RecyclerView.Adapter<PostViewHolder>() {
+class PostAdapter(var postList: List<JobPost>) : RecyclerView.Adapter<PostViewHolder>() {
 
     private lateinit var context : Context
 

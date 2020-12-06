@@ -98,7 +98,6 @@ class PostDetailsFragment : Fragment() {
             }else{
 
                 runBlocking {
-                    viewModel.onIWantThisClicked(args.postId)
                     draw_winner_button.makeItGone()
                     no_item_message.makeItGone()
                     viewModel.getPost(args.postId)

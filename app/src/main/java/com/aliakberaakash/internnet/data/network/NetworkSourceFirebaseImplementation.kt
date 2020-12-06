@@ -1,6 +1,7 @@
 package com.aliakberaakash.internnet.data.network
 
 import com.aliakberaakash.internnet.data.model.JobPost
+import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.tasks.await
@@ -19,6 +20,16 @@ class NetworkSourceFirebaseImplementation : NetworkSource {
         }catch (e : Exception){
             Timber.d(e.localizedMessage)
             false
+        }
+    }
+
+    override suspend fun getAllPost(): QuerySnapshot {
+        try {
+            return db.collection("posts")
+                .get().await()
+        }catch (e : Exception){
+            Timber.d(e.localizedMessage)
+            throw e
         }
     }
 }

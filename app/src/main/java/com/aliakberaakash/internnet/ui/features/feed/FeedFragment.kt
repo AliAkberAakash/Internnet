@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.aliakberaakash.internnet.R
+import com.aliakberaakash.internnet.data.model.JobPost
 import com.aliakberaakash.internnet.data.model.Post
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
@@ -16,10 +17,8 @@ import kotlinx.coroutines.runBlocking
 
 class FeedFragment : Fragment() {
 
-    companion object {
-        const val TAG = "FeedFragment"
-        fun newInstance() = FeedFragment()
-    }
+    private lateinit var adapter : PostAdapter
+    private var allData : MutableList<JobPost> = mutableListOf()
 
     private lateinit var viewModel: FeedViewModel
 
@@ -33,6 +32,14 @@ class FeedFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(FeedViewModel::class.java)
+
+        adapter = PostAdapter(allData)
+        feed_recyclerview.adapter = adapter
+
+        viewModel.allPost.observe(viewLifecycleOwner, {
+            allData.addAll(it)
+            adapter.notifyDataSetChanged()
+        })
 
     }
 

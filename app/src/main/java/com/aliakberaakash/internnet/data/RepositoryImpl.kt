@@ -49,19 +49,18 @@ class RepositoryImpl : Repository{
         }
     }
 
-    suspend fun onIWantThisClicked(documentId : String){
-        db.collection("posts")
-            .document(documentId)
-            .update("claimers", FieldValue.arrayUnion(user?.email))
-    }
-
-    suspend fun onCancelClaimClicked(documentId: String) {
-        db.collection("posts")
-            .document(documentId)
-            .update("claimers", FieldValue.arrayRemove(user?.email))
-    }
-
     override suspend fun postJob(jobPost: JobPost) : Boolean {
         return networkSource.postJob(jobPost)
+    }
+
+    override suspend fun getAllPost(): List<JobPost> {
+
+        val snapshot = networkSource.getAllPost()
+        val allPost : MutableList<JobPost> = mutableListOf()
+
+        for(document in snapshot)
+            allPost.add(document.toObject(JobPost::class.java))
+
+        return allPost
     }
 }

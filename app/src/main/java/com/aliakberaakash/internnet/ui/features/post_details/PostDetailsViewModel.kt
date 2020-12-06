@@ -19,9 +19,6 @@ class PostDetailsViewModel : ViewModel() {
 
     fun getCurrentUser() = repository.getCurrentUser()
 
-    suspend fun onIWantThisClicked(documentId : String) = repository.onIWantThisClicked(documentId)
-
-    suspend fun onCancelClaimClicked(documentId : String) = repository.onCancelClaimClicked(documentId)
 
     fun getPost(documentId : String){
         db.collection("posts").document(documentId)
