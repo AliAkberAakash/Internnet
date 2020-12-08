@@ -1,4 +1,4 @@
-package com.aliakberaakash.internnet.ui.features.feed
+package com.aliakberaakash.internnet.ui.features.feed.feed_recyclerview
 
 interface FeedFragmentCallback {
     fun onIWantThisClicked(documentId : String)

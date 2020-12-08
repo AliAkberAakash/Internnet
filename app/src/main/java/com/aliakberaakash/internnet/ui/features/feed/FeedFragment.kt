@@ -8,16 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import com.aliakberaakash.internnet.R
 import com.aliakberaakash.internnet.data.model.JobPost
-import com.aliakberaakash.internnet.data.model.Post
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
+import com.aliakberaakash.internnet.ui.features.feed.feed_recyclerview.PostAdapter
+import com.aliakberaakash.internnet.ui.features.feed.recommended_recyclerview.RecommendedJobAdapter
 import kotlinx.android.synthetic.main.feed_fragment.*
-import kotlinx.coroutines.runBlocking
 
 class FeedFragment : Fragment() {
 
     private lateinit var adapter : PostAdapter
+    private lateinit var recommendedJobAdapter : RecommendedJobAdapter
     private var allData : MutableList<JobPost> = mutableListOf()
 
     private lateinit var viewModel: FeedViewModel
@@ -34,10 +32,14 @@ class FeedFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(FeedViewModel::class.java)
 
         adapter = PostAdapter(allData)
+        recommendedJobAdapter = RecommendedJobAdapter(allData)
         feed_recyclerview.adapter = adapter
+        jobsForYou.adapter = recommendedJobAdapter
+
 
         viewModel.allPost.observe(viewLifecycleOwner, {
             allData.addAll(it)
+            recommendedJobAdapter.notifyDataSetChanged()
             adapter.notifyDataSetChanged()
         })
 

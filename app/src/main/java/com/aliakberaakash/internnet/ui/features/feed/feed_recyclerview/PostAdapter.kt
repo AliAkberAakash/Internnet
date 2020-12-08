@@ -1,15 +1,12 @@
-package com.aliakberaakash.internnet.ui.features.feed
+package com.aliakberaakash.internnet.ui.features.feed.feed_recyclerview
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.aliakberaakash.internnet.R
 import com.aliakberaakash.internnet.data.model.JobPost
-import com.bumptech.glide.Glide
-import timber.log.Timber
 
 class PostAdapter(var postList: List<JobPost>) : RecyclerView.Adapter<PostViewHolder>() {
 
