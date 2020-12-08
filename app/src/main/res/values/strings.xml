@@ -52,4 +52,6 @@
     <string name="optional">(optional)</string>
     <string name="posting">Posting...</string>
     <string name="company_logo">Company Logo</string>
+    <string name="jobs_for_you">Jobs for you</string>
+    <string name="recent_posts">Recent Posts</string>
 </resources>
