@@ -71,6 +71,7 @@ class CreatePostViewModel : ViewModel() {
         val ts = tsLong.toString()
         val jobPost = JobPost(
             id = ts,
+            user = repository.getUser(),
             jobTitle = titleText.value!!,
             jobType = jobType,
             jobDescription = descriptionText.value!!,

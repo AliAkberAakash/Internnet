@@ -15,9 +15,6 @@ class PostDetailsViewModel : ViewModel() {
     val winner = MutableLiveData<Boolean>()
     private val repository = RepositoryImpl()
 
-    fun checkCurrentUser(email : String) = repository.checkCurrentUser(email)
-
-    fun getCurrentUser() = repository.getCurrentUser()
 
 
     fun getPost(documentId : String){

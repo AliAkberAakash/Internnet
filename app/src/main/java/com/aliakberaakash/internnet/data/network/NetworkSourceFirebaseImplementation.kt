@@ -1,6 +1,8 @@
 package com.aliakberaakash.internnet.data.network
 
 import com.aliakberaakash.internnet.data.model.JobPost
+import com.aliakberaakash.internnet.data.model.User
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -10,6 +12,7 @@ import timber.log.Timber
 class NetworkSourceFirebaseImplementation : NetworkSource {
 
     private val db = Firebase.firestore
+    private val firebaseUser = Firebase.auth.currentUser
 
     override suspend fun postJob(jobPost: JobPost): Boolean {
         return try {
@@ -31,5 +34,13 @@ class NetworkSourceFirebaseImplementation : NetworkSource {
             Timber.d(e.localizedMessage)
             throw e
         }
+    }
+
+    override fun getUser(): User {
+        return User(
+            email = firebaseUser?.email ?: "",
+            userName = firebaseUser?.displayName ?: "",
+            image = firebaseUser?.photoUrl?.toString() ?: ""
+        )
     }
 }

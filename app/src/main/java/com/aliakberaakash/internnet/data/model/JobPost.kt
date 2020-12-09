@@ -4,6 +4,7 @@ import com.google.firebase.Timestamp
 
 data class JobPost(
     var id : String = "",
+    var user : User? = null,
     var createdAt : Timestamp = Timestamp.now(),
     var jobTitle : String = "",
     var jobType : String = "",

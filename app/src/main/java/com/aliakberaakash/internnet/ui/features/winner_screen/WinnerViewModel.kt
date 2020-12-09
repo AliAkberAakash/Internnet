@@ -12,16 +12,4 @@ class WinnerViewModel : ViewModel() {
 
     val post = MutableLiveData<Post>()
     val user = MutableLiveData<User>()
-
-    suspend fun getPost(documentId : String){
-        val snapShot = repository.getPost(documentId)?.toObject<Post>()
-        post.postValue(snapShot)
-        getUser(snapShot?.winner ?: "")
-    }
-
-    private suspend fun getUser(userId : String){
-        user.postValue(repository.getUser(userId)?.toObject<User>())
-    }
-
-    fun checkUser(email: String) = repository.checkCurrentUser(email)
 }

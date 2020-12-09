@@ -18,10 +18,6 @@ class WinnerFragment : Fragment() {
 
     private val args : WinnerFragmentArgs by navArgs()
 
-    companion object {
-        fun newInstance() = WinnerFragment()
-    }
-
     private lateinit var viewModel: WinnerViewModel
 
     override fun onCreateView(
@@ -34,23 +30,6 @@ class WinnerFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(WinnerViewModel::class.java)
-
-        viewModel.post.observe(viewLifecycleOwner, {
-
-        })
-
-        viewModel.user.observe(viewLifecycleOwner, {
-            winner_text.text = it.userName
-
-            if(viewModel.checkUser(it.email))
-                contact_host_button.makeItVisible()
-
-        })
-
-
-        GlobalScope.launch(Dispatchers.IO) {
-            viewModel.getPost(args.postId)
-        }
 
     }
 

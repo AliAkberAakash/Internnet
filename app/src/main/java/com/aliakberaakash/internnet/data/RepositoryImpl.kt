@@ -14,40 +14,8 @@ import timber.log.Timber
 
 class RepositoryImpl : Repository{
 
-    val user = Firebase.auth.currentUser
-    private val db = Firebase.firestore
+
     private val networkSource : NetworkSource = NetworkSourceFirebaseImplementation()
-
-    fun checkCurrentUser(email : String) = email == user?.email
-
-
-    fun getCurrentUser() = User(
-        user?.email!!,
-        user.displayName!!,
-        ""
-    )
-
-    suspend fun getUser(userId : String) : DocumentSnapshot?{
-        return try {
-            db.collection("users")
-                .document(userId)
-                .get()
-                .await()
-        }catch (e : Exception){
-            null
-        }
-    }
-
-    suspend fun getPost(documentId: String) : DocumentSnapshot?{
-        return try {
-            db.collection("posts")
-                    .document(documentId)
-                    .get()
-                    .await()
-        }catch (e : Exception){
-            null
-        }
-    }
 
     override suspend fun postJob(jobPost: JobPost) : Boolean {
         return networkSource.postJob(jobPost)
@@ -63,4 +31,6 @@ class RepositoryImpl : Repository{
 
         return allPost
     }
+
+    override fun getUser() = networkSource.getUser()
 }
