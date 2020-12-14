@@ -12,5 +12,5 @@ class PostViewHolder(item : View) : RecyclerView.ViewHolder(item){
     val companyLogo : ImageView = item.findViewById(R.id.companyLogo)
     val jobTitle : TextView = item.findViewById(R.id.jobTitle)
     val companyName : TextView = item.findViewById(R.id.companyName)
-    val salaryText : TextView = item.findViewById(R.id.salaryText)
+    val postedTimeText : TextView = item.findViewById(R.id.postedTime)
 }

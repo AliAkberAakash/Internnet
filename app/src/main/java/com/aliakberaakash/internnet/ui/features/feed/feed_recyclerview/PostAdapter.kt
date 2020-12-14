@@ -26,7 +26,7 @@ class PostAdapter(var postList: List<JobPost>) : RecyclerView.Adapter<PostViewHo
 
         holder.jobTitle.text = item.jobTitle
         holder.companyName.text = item.id
-        holder.salaryText.text = "${item.endingSalary}\\m"
+        /*holder.postedTimeText.text = "${item.createdAt}"*/
     }
 
     override fun getItemCount() = postList.size
