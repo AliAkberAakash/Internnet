@@ -27,8 +27,8 @@ class FeedFragment : Fragment() {
         return inflater.inflate(R.layout.feed_fragment, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(FeedViewModel::class.java)
 
         adapter = PostAdapter(allData)
@@ -42,7 +42,6 @@ class FeedFragment : Fragment() {
             recommendedJobAdapter.notifyDataSetChanged()
             adapter.notifyDataSetChanged()
         })
-
     }
 
 }
