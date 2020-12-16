@@ -184,18 +184,32 @@
             app:layout_constraintTop_toBottomOf="@+id/benefitsLabel"
             tools:text="Paid time off such as PTO, sick days, and vacation days. Health insurance. Life insurance. Dental insurance. Vision insurance." />
 
+        <ImageButton
+            android:backgroundTint="@android:color/transparent"
+            android:id="@+id/imageButton"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_bookmark"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/benefitsText" />
+
         <Button
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="24dp"
             android:backgroundTint="@color/actionColor"
             android:text="@string/apply_now"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageButton"
             app:layout_constraintTop_toBottomOf="@+id/benefitsText" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
