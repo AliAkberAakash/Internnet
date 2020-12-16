@@ -25,7 +25,7 @@ class PostAdapter(var postList: List<JobPost>) : RecyclerView.Adapter<PostViewHo
         val item = postList[position]
 
         holder.jobTitle.text = item.jobTitle
-        holder.companyName.text = item.id
+        holder.companyName.text = item.user?.userName
         /*holder.postedTimeText.text = "${item.createdAt}"*/
     }
 
