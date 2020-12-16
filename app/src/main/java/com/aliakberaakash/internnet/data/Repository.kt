@@ -7,6 +7,7 @@ interface Repository {
 
     suspend fun postJob(jobPost : JobPost) : Boolean
     suspend fun getAllPost() : List<JobPost>
+    suspend fun getSinglePost(id : String) : JobPost
     fun getUser() : User
 
 }
