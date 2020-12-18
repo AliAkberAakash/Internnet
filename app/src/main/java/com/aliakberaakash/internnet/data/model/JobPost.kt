@@ -14,4 +14,5 @@ data class JobPost(
     var startingSalary : String = "",
     var endingSalary : String = "",
     var deadline : String = "",
+    var applicants : MutableList<String> = mutableListOf(),
 )
