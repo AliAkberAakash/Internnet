@@ -29,5 +29,9 @@ class RepositoryImpl : Repository{
         return snapshot.toObject(JobPost::class.java)!!
     }
 
+    override suspend fun applyForJob(id: String): Boolean {
+        return networkSource.applyForJob(id)
+    }
+
     override fun getUser() = networkSource.getUser()
 }

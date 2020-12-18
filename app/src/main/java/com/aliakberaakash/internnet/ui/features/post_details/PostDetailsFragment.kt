@@ -41,7 +41,13 @@ class PostDetailsFragment : Fragment() {
             if(it.jobBenefits.isEmpty())
                 benefitsLabel.makeItGone()
             benefitsText.text = it.jobBenefits
-            
+
+            applyButton.setOnClickListener {
+                GlobalScope.launch(Dispatchers.IO) {
+                    viewModel.applyForJob(args.postId)
+                }
+            }
+
 
         })
 
