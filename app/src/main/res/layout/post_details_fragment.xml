@@ -107,7 +107,7 @@
 
         <TextView
             android:textStyle="bold"
-            android:id="@+id/textView5"
+            android:id="@+id/deadlineText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -125,7 +125,7 @@
             android:layout_marginTop="16dp"
             android:text="@string/description"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+            app:layout_constraintTop_toBottomOf="@+id/deadlineText" />
 
         <TextView
             android:id="@+id/descriptionText"

@@ -55,4 +55,5 @@
     <string name="jobs_for_you">Jobs for you</string>
     <string name="recent_posts">Recent Posts</string>
     <string name="apply_now">Apply Now</string>
+    <string name="deadline_text">Deadline : %1$s</string>
 </resources>

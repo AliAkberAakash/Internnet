@@ -37,6 +37,7 @@ class PostDetailsFragment : Fragment() {
             salaryText.text = it.endingSalary
             descriptionText.text = it.jobDescription
             requirementsText.text = it.jobRequirements
+            deadlineText.text = getString(R.string.deadline_text, it.deadline)
             if(it.jobBenefits.isEmpty())
                 benefitsLabel.makeItGone()
             benefitsText.text = it.jobBenefits
