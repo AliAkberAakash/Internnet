@@ -58,4 +58,6 @@
     <string name="you_applied_for_this_job">You applied for this job</string>
     <string name="apply_now">Apply Now</string>
     <string name="good_luck_with_job_hunting">Good luck with Job Hunting!</string>
+    <string name="applied_jobs">Applied Jobs</string>
+    <string name="my_jobs">My Jobs</string>
 </resources>

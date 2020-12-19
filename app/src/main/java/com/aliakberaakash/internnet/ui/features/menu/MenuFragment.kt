@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.aliakberaakash.internnet.R
+import com.aliakberaakash.internnet.databinding.MenuFragmentBinding
 import com.aliakberaakash.internnet.ui.features.login.LoginActivity
+import com.bumptech.glide.Glide
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -29,13 +31,30 @@ class MenuFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.menu_fragment, container, false)
+    ): View {
+        viewModel = ViewModelProvider(this).get(MenuViewModel::class.java)
+
+        val binding = MenuFragmentBinding.inflate(inflater,container,false)
+                .apply {
+                    lifecycleOwner = viewLifecycleOwner
+                    viewModel = this@MenuFragment.viewModel
+                }
+
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(MenuViewModel::class.java)
+
+        viewModel.user.observe(viewLifecycleOwner, {
+            Glide.with(this)
+                    .load(it.image)
+                    .centerCrop()
+                    .placeholder(R.drawable.ic_placeholder)
+                    .into(profile_image)
+        })
+
+
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.server_client_id))
