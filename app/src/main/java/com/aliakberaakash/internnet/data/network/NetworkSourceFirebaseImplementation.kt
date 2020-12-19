@@ -50,10 +50,15 @@ class NetworkSourceFirebaseImplementation : NetworkSource {
 
     override suspend fun applyForJob(id: String): Boolean {
         return try{
-            db.collection("posts")
-                    .document(id)
-                    .update("applicants", FieldValue.arrayUnion(firebaseUser!!.email))
-            true
+            if(firebaseUser!=null) {
+                db.collection("posts")
+                        .document(id)
+                        .update("applicants", FieldValue.arrayUnion(firebaseUser.email))
+                db.collection("users")
+                        .document(firebaseUser.email!!)
+                        .update("appliedJobs", FieldValue.arrayUnion(id))
+                true
+            }else false
         }catch (e : Exception){
             Timber.d(e.localizedMessage)
             false
