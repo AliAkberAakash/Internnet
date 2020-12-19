@@ -195,6 +195,7 @@
                 tools:text="Paid time off such as PTO, sick days, and vacation days. Health insurance. Life insurance. Dental insurance. Vision insurance." />
 
             <ImageButton
+                android:visibility="gone"
                 android:backgroundTint="@android:color/transparent"
                 android:id="@+id/imageButton"
                 android:layout_width="60dp"
