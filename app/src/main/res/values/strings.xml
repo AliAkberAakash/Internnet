@@ -54,6 +54,7 @@
     <string name="company_logo">Company Logo</string>
     <string name="jobs_for_you">Jobs for you</string>
     <string name="recent_posts">Recent Posts</string>
-    <string name="apply_now">Apply Now</string>
     <string name="deadline_text">Deadline : %1$s</string>
+    <string name="you_applied_for_this_job">You applied for this job</string>
+    <string name="apply_now">Apply Now</string>
 </resources>

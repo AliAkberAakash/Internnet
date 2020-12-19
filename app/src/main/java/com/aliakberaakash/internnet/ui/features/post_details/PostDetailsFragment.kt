@@ -9,6 +9,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.aliakberaakash.internnet.R
 import com.aliakberaakash.internnet.core.makeItGone
+import com.aliakberaakash.internnet.databinding.CreatePostLayoutBinding
+import com.aliakberaakash.internnet.databinding.PostDetailsFragmentBinding
 import kotlinx.android.synthetic.main.post_details_fragment.*
 import kotlinx.coroutines.*
 
@@ -20,16 +22,23 @@ class PostDetailsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
+        viewModel = ViewModelProvider(this).get(PostDetailsViewModel::class.java)
+        val binding = PostDetailsFragmentBinding.inflate(inflater, container, false)
+                .apply {
+                    lifecycleOwner = viewLifecycleOwner
+                    viewModel = this@PostDetailsFragment.viewModel
+                }
 
-        return inflater.inflate(R.layout.post_details_fragment, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this).get(PostDetailsViewModel::class.java)
 
         viewModel.post.observe(viewLifecycleOwner, {
+
+            viewModel.checkApplied()
 
             titleText.text = it.jobTitle
             companyNameText.text = it.user?.userName
@@ -41,20 +50,17 @@ class PostDetailsFragment : Fragment() {
             if(it.jobBenefits.isEmpty())
                 benefitsLabel.makeItGone()
             benefitsText.text = it.jobBenefits
-
-            applyButton.setOnClickListener {
-                GlobalScope.launch(Dispatchers.IO) {
-                    viewModel.applyForJob(args.postId)
-                }
-            }
-
-
         })
+
+        applyButton.setOnClickListener {
+            GlobalScope.launch(Dispatchers.IO) {
+                viewModel.applyForJob(args.postId)
+            }
+        }
 
         GlobalScope.launch(Dispatchers.IO) {
             viewModel.getPost(args.postId)
         }
-
 
     }
 
