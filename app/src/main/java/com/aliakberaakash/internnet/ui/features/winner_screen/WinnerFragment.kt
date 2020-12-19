@@ -16,7 +16,6 @@ import kotlinx.coroutines.launch
 
 class WinnerFragment : Fragment() {
 
-    private val args : WinnerFragmentArgs by navArgs()
 
     private lateinit var viewModel: WinnerViewModel
 

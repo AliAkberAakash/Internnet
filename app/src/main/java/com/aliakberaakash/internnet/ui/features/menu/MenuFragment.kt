@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.aliakberaakash.internnet.R
 import com.aliakberaakash.internnet.databinding.MenuFragmentBinding
 import com.aliakberaakash.internnet.ui.features.login.LoginActivity
@@ -54,7 +55,13 @@ class MenuFragment : Fragment() {
                     .into(profile_image)
         })
 
+        appliedJobsCard.setOnClickListener {
+            it.findNavController().navigate(R.id.action_menuFragment_to_appliedJobsFragment)
+        }
 
+        myJobsCard.setOnClickListener {
+            it.findNavController().navigate(R.id.action_menuFragment_to_myJobsFragment)
+        }
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.server_client_id))
