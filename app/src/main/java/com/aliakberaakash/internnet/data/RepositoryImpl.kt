@@ -1,6 +1,7 @@
 package com.aliakberaakash.internnet.data
 
 import com.aliakberaakash.internnet.data.model.JobPost
+import com.aliakberaakash.internnet.data.model.User
 import com.aliakberaakash.internnet.data.network.NetworkSource
 import com.aliakberaakash.internnet.data.network.NetworkSourceFirebaseImplementation
 
@@ -33,5 +34,8 @@ class RepositoryImpl : Repository{
         return networkSource.applyForJob(id)
     }
 
-    override fun getUser() = networkSource.getUser()
+    override suspend fun getUser() : User {
+        val snapshot = networkSource.getUser()
+        return  snapshot.toObject(User::class.java)!!
+    }
 }

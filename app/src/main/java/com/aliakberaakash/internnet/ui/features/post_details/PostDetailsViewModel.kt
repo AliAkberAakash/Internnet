@@ -7,6 +7,9 @@ import androidx.lifecycle.Transformations
 import com.aliakberaakash.internnet.R
 import com.aliakberaakash.internnet.data.RepositoryImpl
 import com.aliakberaakash.internnet.data.model.JobPost
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import timber.log.Timber
 
 class PostDetailsViewModel(context: Application) : AndroidViewModel(context) {
@@ -36,9 +39,12 @@ class PostDetailsViewModel(context: Application) : AndroidViewModel(context) {
 
     fun checkApplied(){
         if(post.value!=null) {
-            val user = repository.getUser()
-            applyButtonEnable.postValue(user.email !in post.value?.applicants!!)
-            Timber.d(applyButtonEnable.value.toString())
+            GlobalScope.launch {
+                val user = repository.getUser()
+                applyButtonEnable.postValue(user.email !in post.value?.applicants!!)
+                Timber.d(applyButtonEnable.value.toString())
+            }
+
         }
         else Timber.d("post.value is null")
     }

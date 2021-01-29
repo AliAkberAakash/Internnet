@@ -11,6 +11,7 @@ interface NetworkSource {
     suspend fun getAllPost() : QuerySnapshot
     suspend fun getSinglePost(id : String) : DocumentSnapshot
     suspend fun applyForJob(id : String) : Boolean
-    fun getUser() : User
+    suspend fun getAppliedJobs() : List<JobPost>
+    suspend fun getUser() : DocumentSnapshot
 
 }

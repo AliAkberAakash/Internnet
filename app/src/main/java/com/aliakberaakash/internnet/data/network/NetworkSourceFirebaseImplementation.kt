@@ -65,11 +65,27 @@ class NetworkSourceFirebaseImplementation : NetworkSource {
         }
     }
 
-    override fun getUser(): User {
-        return User(
-            email = firebaseUser?.email ?: "",
-            userName = firebaseUser?.displayName ?: "",
-            image = firebaseUser?.photoUrl?.toString() ?: ""
-        )
+    override suspend fun getAppliedJobs(): List<JobPost> {
+        /*try{
+            val user = getUser()
+
+
+        }catch (e : Exception){
+            throw e
+        }*/
+
+        return  mutableListOf()
+    }
+
+    override suspend fun getUser(): DocumentSnapshot {
+        if(firebaseUser!=null && firebaseUser.email!=null) {
+            try {
+                return db.collection("users")
+                    .document(firebaseUser.email!!).get().await()
+            } catch (e: Exception) {
+                Timber.d(e.localizedMessage)
+                throw e
+            }
+        }else throw Exception()
     }
 }

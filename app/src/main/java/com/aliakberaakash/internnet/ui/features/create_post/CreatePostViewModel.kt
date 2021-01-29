@@ -67,24 +67,26 @@ class CreatePostViewModel : ViewModel() {
     }
 
     fun onPostClicked(){
-        val tsLong = System.currentTimeMillis() / 1000
-        val ts = tsLong.toString()
-        val jobPost = JobPost(
-            id = ts,
-            user = repository.getUser(),
-            jobTitle = titleText.value!!,
-            jobType = jobType,
-            jobDescription = descriptionText.value!!,
-            jobRequirements = requirementsText.value!!,
-            jobBenefits = benefitsText.value ?: "",
-            startingSalary = startingSalaryText.value!!,
-            endingSalary = maximumSalaryText.value!!,
-            deadline = deadlineText.value!!
-        )
-
-        Timber.d(jobPost.toString())
 
         viewModelScope.launch(Dispatchers.IO){
+
+            val tsLong = System.currentTimeMillis() / 1000
+            val ts = tsLong.toString()
+            val jobPost = JobPost(
+                id = ts,
+                user = repository.getUser(),
+                jobTitle = titleText.value!!,
+                jobType = jobType,
+                jobDescription = descriptionText.value!!,
+                jobRequirements = requirementsText.value!!,
+                jobBenefits = benefitsText.value ?: "",
+                startingSalary = startingSalaryText.value!!,
+                endingSalary = maximumSalaryText.value!!,
+                deadline = deadlineText.value!!
+            )
+
+            Timber.d(jobPost.toString())
+
             isLoading.postValue(true)
             isSuccess.postValue(repository.postJob(jobPost))
             isLoading.postValue(false)
