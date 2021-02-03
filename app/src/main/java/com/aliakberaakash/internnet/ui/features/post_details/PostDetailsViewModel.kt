@@ -1,6 +1,7 @@
 package com.aliakberaakash.internnet.ui.features.post_details
 
 import android.app.Application
+import android.view.View
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
@@ -17,6 +18,7 @@ class PostDetailsViewModel(context: Application) : AndroidViewModel(context) {
 
     val post : MutableLiveData<JobPost> = MutableLiveData()
     val applyButtonEnable : MutableLiveData<Boolean> = MutableLiveData(false)
+    val applyButtonVisibility: MutableLiveData<Int> = MutableLiveData(View.GONE)
     val applyButtonText = Transformations.map(applyButtonEnable){
         if(it) context.getString(R.string.apply_now)
         else context.getString(R.string.you_applied_for_this_job)
@@ -37,11 +39,20 @@ class PostDetailsViewModel(context: Application) : AndroidViewModel(context) {
             Timber.d("Failed to apply for the Job")
     }
 
-    fun checkApplied(){
+    fun checkApplyButtonStatus(){
         if(post.value!=null) {
             GlobalScope.launch {
                 val user = repository.getUser()
+
+                // check if self post
+                applyButtonVisibility.postValue(
+                    if(user.email == post.value?.user?.email)
+                        View.GONE
+                    else View.VISIBLE
+                )
+                // check if already applied
                 applyButtonEnable.postValue(user.email !in post.value?.applicants!!)
+
                 Timber.d(applyButtonEnable.value.toString())
             }
 

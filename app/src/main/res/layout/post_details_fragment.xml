@@ -210,6 +210,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/benefitsText" />
 
             <Button
+                android:visibility="@{viewModel.applyButtonVisibility}"
                 android:enabled="@{viewModel.applyButtonEnable}"
                 android:id="@+id/applyButton"
                 android:layout_width="0dp"

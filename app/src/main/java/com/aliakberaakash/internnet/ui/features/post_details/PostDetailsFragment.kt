@@ -9,7 +9,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.aliakberaakash.internnet.R
 import com.aliakberaakash.internnet.core.makeItGone
-import com.aliakberaakash.internnet.databinding.CreatePostLayoutBinding
 import com.aliakberaakash.internnet.databinding.PostDetailsFragmentBinding
 import kotlinx.android.synthetic.main.post_details_fragment.*
 import kotlinx.coroutines.*
@@ -38,7 +37,7 @@ class PostDetailsFragment : Fragment() {
 
         viewModel.post.observe(viewLifecycleOwner, {
 
-            viewModel.checkApplied()
+            viewModel.checkApplyButtonStatus()
 
             titleText.text = it.jobTitle
             companyNameText.text = it.user?.userName
